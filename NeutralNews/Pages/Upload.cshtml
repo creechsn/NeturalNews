@@ -1,0 +1,16 @@
+﻿@page
+@model UploadModel
+@{
+    ViewData["Title"] = "Upload a Link";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
+
+<form>
+    <div class="textBox">
+        <input type="link" class="form-control" id="InputLink" placeholder="Enter a valid link">
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
