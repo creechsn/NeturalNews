@@ -9,10 +9,12 @@ namespace NeutralNews.Pages
   public class ContactModel : PageModel
   {
     public string Message { get; set; }
+    public string InputEmail { get; set; }
+    public string SubmittedConcerns { get; set; }
 
-    public void OnGet()
+        public void OnGet()
     {
-      Message = "Questions or Concerns?";
+      
     }
   }
 }
