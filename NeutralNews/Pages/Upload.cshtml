@@ -6,11 +6,11 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@Model.Message</h3>
 
-<form>
+<form method="post">
     <div class="textBox">
-        <input type="link" class="form-control" id="InputLink" placeholder="Enter a valid link">
-        <br />
-        <button type="submit" class="btn btn-primary">Submit</button>
+          <input type="url" data-val="true" data-val-url="The Website field is not a valid fully-qualified http, https, or ftp URL." 
+            id="input_URL" name="inputURL" value="" />
+        <br /> <br />
+        <button id="submit" type="submit" value="Submit"  class="btn btn-primary" runat="server">Submit</button>
     </div>
-
 </form>
