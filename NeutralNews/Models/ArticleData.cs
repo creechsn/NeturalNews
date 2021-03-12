@@ -7,9 +7,18 @@ namespace NeutralNews.Models
 {
     public class ArticleData
     {
-        public int ReferenceID { get; set; }
-        public string ReferenceName { get; set; }
-        public string ReferenceURL { get; set; }
-        public decimal isCredible { get; set; }
+        public int ReliabilityID { get; set; }
+
+        public string SourceName { get; set; }
+
+        public string SourceURL { get; set; }
+
+        public int score { get; set; }
+
+        public byte isArticle { get; set; }
+
+        public byte isAudio { get; set; }
+
+        public byte isVideo { get; set; }
     }
 }

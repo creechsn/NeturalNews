@@ -6,33 +6,38 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Web.Http;
 using NeutralNews.Models;
+using System.Net.Http;
+using Microsoft.IdentityModel.Protocols;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace NeutralNews
 {
-    public class DataController : ApiController
+    public class DataController : Controller
     {
-
-   
-        ArticleData[] articles = new ArticleData[]
+        public ActionResult Index()
         {
-            new ArticleData { ReferenceID = 1, ReferenceName = "ABC12", ReferenceURL = "https://abc12.com/", isCredible = 1 },
-            new ArticleData { ReferenceID = 2, ReferenceName = "ABCNY", ReferenceURL = "https://abc7ny.com/", isCredible = 1 },
-            new ArticleData { ReferenceID = 3, ReferenceName = "ABC7Chicago", ReferenceURL = "https://abc7chicago.com/", isCredible = 1 }
-        };
-
-        public IEnumerable<ArticleData> GetAllArticles()
-        {
-            return articles;
-        }
-
-        public IHttpActionResult GetArticles(int id)
-        {
-            var article = articles.FirstOrDefault((p) => p.ReferenceID == id);
-            if (article == null)
+            List<ArticleData> articlesList = new List<ArticleData>();
+            string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(CS))
             {
-                return NotFound();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Source_Data", con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var article = new ArticleData();
+                   
+                    article.ReliabilityID = Convert.ToInt32(rdr["EmployeeId"]);
+                    article.SourceName = rdr["Name"].ToString();
+                    article.SourceURL = rdr["URL"].ToString();
+                    article.score = Convert.ToInt32(rdr["score"]);
+                }
             }
-            return Ok(article);
+            return View(articlesList);
         }
     }
 }
