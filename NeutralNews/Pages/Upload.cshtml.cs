@@ -28,7 +28,7 @@ namespace NeutralNews.Pages
             string conString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(conString);
             myConnection.Open();
-            //todo get the connection to work properly
+           
 
             //trims down the url so it can be compared to our db
             Uri urlTrim = new Uri(inputURL);
