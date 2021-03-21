@@ -1,0 +1,52 @@
+﻿@model IEnumerable<NeutralNews.Models.SocialIssuesData>
+
+@{
+    ViewData["Title"] = "SocialIssuesArticles";
+}
+
+<h2>SocialIssuesArticles</h2>
+
+<p>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isCredible)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @* Pretty navbar for flipping through categories*@
+        @*    @foreach (var item in Model) *@
+        {
+        <tr>
+            <td>
+                @*  @Html.DisplayFor(modelItem => item.ReferenceID)  *@
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.ReferenceName) *@
+            </td>
+            <td>
+                @*  @Html.DisplayFor(modelItem => item.ReferenceURL) *@
+            </td>
+            <td>
+                @*   @Html.DisplayFor(modelItem => item.isCredible) *@
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+@RenderBody()
