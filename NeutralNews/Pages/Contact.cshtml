@@ -24,14 +24,35 @@
     <br />
     <br />
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" id="SubmitButton" class="btn btn-primary">Submit</button>
 
     <div class="form-group">
         <h3>Do you want to check the political leaning of a link/article of your own?</h3>
-        <label for="uploadText">Click the button to be redirected to where you can upload your own article link.
-        We will compare your link to our database using our algorithm to check what kind of political leaning it has.</label>
+        <label for="uploadText">
+            Click the button to be redirected to where you can upload your own article link.
+            We will compare your link to our database using our algorithm to check what kind of political leaning it has.
+        </label>
     </div>
-    <button type="button" onClick="location.href = 'Upload'" class="btn btn-primary">Upload a Link!</button>
+    <input id="btnUploadView" type="button" onClick="location.href = 'Upload'" value="Upload A Link" class="btn btn-primary"/>
 
 </form>
+<script>
+    //button click event
+    document.getElementById("SubmitButton").onclick = function () { validateFunction() };
+    function validateFunction() {
+        // here are my variables
+        var Email = document.getElementById("InputEmail").value;
+        var emailText = document.getElementById("SubmittedConcerns").value;
+        var iChars = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?";
+        //check for nulls/empty inputs
+        if (Email == null || Email == "") {
+            window.alert("Please enter a valid email");
+            console.log("Please enter a valid email");
+        }
+        if (emailText == null || emailText == "") {
+            window.alert("Please type a message before submitting");
+            console.log("Please type a message before submitting" + validInput);
+        }
+    };
+</script>
 

@@ -1,16 +1,18 @@
 ﻿@page
-@model UploadModel
-@{
-    ViewData["Title"] = "Upload a Link";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@Model.Message</h3>
+    @model UploadModel
+    @{
+        ViewData["Title"] = "Upload a Link";
+        ViewData["Message"] = "Insert a valid link to an article/website you would like to know the political leaning of.";
+    }
+    <h2>@ViewData["Title"]</h2>
+    <h3>@ViewData["Message"]</h3>
 
-<form method="post">
-    <div class="textBox">
-          <input type="url" data-val="true" data-val-url="The Website field is not a valid fully-qualified http, https, or ftp URL." 
-            id="input_URL" name="inputURL" value="" />
-        <br /> <br />
-        <button id="submit" type="submit" value="Submit"  class="btn btn-primary" runat="server">Submit</button>
-    </div>
-</form>
+    <form method="post">
+        <div class="textBox">
+            <input type="url" data-val="true" data-val-url="The Website field is not a valid fully-qualified http, https, or ftp URL."
+                   id="input_URL" name="inputURL" value="" />
+            <br /> <br />
+            <button id="submit" type="submit" value="Submit" class="btn btn-primary" runat="server">Submit</button>
+            @*<input id="Button" type="submit" value="Submit"  class="btn btn-primary"  runat="server"/>*@
+        </div>
+   </form>
