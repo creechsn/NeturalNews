@@ -3,6 +3,36 @@
 @{
     ViewData["Title"] = "Index";
 }
+@* --------------------------------------------------------------------------------------- *@
+@* Page specific CSS *@
+@* --------------------------------------------------------------------------------------- *@
+<style>
+    /* Style the active class, and buttons on mouse-over */
+    .active, .btn:hover {
+        background-color: #666;
+        color: white;
+    }
+    /* Change colors based on political bias score */
+    #slightLeft {
+        background-color: #061f80;
+    }
+
+    #FarRight {
+        background-color: #2759b8;
+    }
+
+    #Neutral {
+        background-color: #cad0d9;
+    }
+
+    #FarRight {
+        background-color: #731815;
+    }
+
+    #slightRight {
+        background-color: #ab6161;
+    }
+</style>
 
 @* Our informational images will slide through here *@
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
@@ -15,34 +45,16 @@
         <div class="item active">
             <img src="~/images/MNN1.png" alt="ASP.NET" class="img-responsive" />
             <div class="carousel-caption" role="option">
-                <!-- <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p> -->
             </div>
         </div>
         <div class="item">
             <img src="~/images/MNN2.png" alt="Visual Studio" class="img-responsive" />
             <div class="carousel-caption" role="option">
-                <!-- <p>
-                     There are powerful new features in Visual Studio for building modern web apps.
-                     <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                         Learn More
-                     </a> -->
-
             </div>
         </div>
         <div class="item">
             <img src="~/images/MNN3.png" alt="Microsoft Azure" class="img-responsive" />
             <div class="carousel-caption" role="option">
-                <!-- <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p> -->
             </div>
         </div>
     </div>
@@ -57,46 +69,67 @@
 </div>
 
 
+@* Iterate through records in the database and display on page *@
+@foreach (var articleData in Model.ArticleData)
+{
+    <div class="article-container">
+        <div class="article-title">
+            <h2> @articleData.ReferenceName</h2>
+        </div>
+        <div class="article-bias" id="@articleData.BiasLeaning"></div>
+        <embed type="text/html" class="embedContent" src="@articleData.ReferenceURL" width="1140" height="400">
+    </div>
+}
+
+@*<tr>
+        <td> @articleData.ReferenceID</td>
+        <td> @articleData.ReferenceName</td>
+        <td> @articleData.ReferenceURL</td>
+        <td> @articleData.ReferenceScore</td>
+    </tr>*@
+
 @* Articles are placed here (need to add code to populate based on database data) *@
 <!--AB - added a new div to handle the color coded blocks and changed the old one to handle the article title-->
-<div class="row">
-    <h1>Trending Articles</h1>
-    <div class="col-md-12">
-        <div class="article-container">
-            <div class="article-title">
-                <h2>Black Lives Matter Just Entered Its Next Phase</h2>
+@*
+    <div class="row">
+        <h1>Trending Articles</h1>
+        <div class="col-md-12">
+            <div class="article-container">
+                <div class="article-title">
+                    <h2>Black Lives Matter Just Entered Its Next Phase</h2>
+                </div>
+                <div class="article-bias" id="farleftliberal"></div>
+                <embed type="text/html" class="embedContent" src="https://www.theatlantic.com/culture/archive/2020/09/black-lives-matter-just-entered-its-next-phase/615952/" width="1140" height="400">
             </div>
-            <div class="article-bias" id="farleftliberal"></div>
-            <embed type="text/html" class="embedContent" src="https://www.theatlantic.com/culture/archive/2020/09/black-lives-matter-just-entered-its-next-phase/615952/" width="1140" height="400">
-        </div>
-        <div class="article-container">
-            <div class="article-title">
-                <h2>Over 11,000 scientists warn of ‘climate emergency’</h2>
+            <div class="article-container">
+                <div class="article-title">
+                    <h2>Over 11,000 scientists warn of ‘climate emergency’</h2>
+                </div>
+                <div class="article-bias" id="farrightconservative"></div>
+                <embed type="text/html" class="embedContent" src="https://www.foxnews.com/science/11000-scientists-warn-of-climate-emergency" width="1140" height="400">
             </div>
-            <div class="article-bias" id="farrightconservative"></div>
-            <embed type="text/html" class="embedContent" src="https://www.foxnews.com/science/11000-scientists-warn-of-climate-emergency" width="1140" height="400">
-        </div>
-        <div class="article-container">
-            <div class="article-title">
-                <h2>Ginsburg, a feminist icon memorialized as the Notorious RBG</h2>
+            <div class="article-container">
+                <div class="article-title">
+                    <h2>Ginsburg, a feminist icon memorialized as the Notorious RBG</h2>
+                </div>
+                <div class="article-bias" id="neutral"></div>
+                <embed type="text/html" class="embedContent" src="https://abcnews.go.com/Politics/wireStory/ginsburg-feminist-icon-memorialized-notorious-rbg-73113229" width="1140" height="400">
             </div>
-            <div class="article-bias" id="neutral"></div>
-            <embed type="text/html" class="embedContent" src="https://abcnews.go.com/Politics/wireStory/ginsburg-feminist-icon-memorialized-notorious-rbg-73113229" width="1140" height="400">
-        </div>
-        <div class="article-container">
-            <div class="article-title" >
-                <h2>How LGBT Nonprofits And Their Billionaire Patrons Are Reshaping The World</h2>
+            <div class="article-container">
+                <div class="article-title">
+                    <h2>How LGBT Nonprofits And Their Billionaire Patrons Are Reshaping The World</h2>
+                </div>
+                <div class="article-bias" id="neutralrightconservative"></div>
+                <embed type="text/html" class="embedContent" src="https://www.theamericanconservative.com/articles/how-lgbt-nonprofits-and-their-billionaire-patrons-are-reshaping-the-world/" width="1140" height="400">
             </div>
-            <div class="article-bias" id="neutralrightconservative"></div>
-            <embed type="text/html" class="embedContent" src="https://www.theamericanconservative.com/articles/how-lgbt-nonprofits-and-their-billionaire-patrons-are-reshaping-the-world/" width="1140" height="400">
-        </div>
-        <div class="article-container">
-            <div class="article-title">
-                <h2>CNN Special Reports Presents: Women Represented: The 100 Year Battle for Equality</h2>
+            <div class="article-container">
+                <div class="article-title">
+                    <h2>CNN Special Reports Presents: Women Represented: The 100 Year Battle for Equality</h2>
+                </div>
+                <div class="article-bias" id="midleftliberal"></div>
+                <embed type="text/html" class="embedContent" src="https://cnnpressroom.blogs.cnn.com/2020/08/17/cnn-special-reports-presents-women-represented-the-100-year-battle-for-equality/" width="1140" height="400">
             </div>
-            <div class="article-bias" id="midleftliberal"></div>
-            <embed type="text/html" class="embedContent" src="https://cnnpressroom.blogs.cnn.com/2020/08/17/cnn-special-reports-presents-women-represented-the-100-year-battle-for-equality/" width="1140" height="400">
         </div>
-    </div>
 
-</div>
+    </div>
+*@

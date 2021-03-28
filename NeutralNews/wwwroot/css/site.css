@@ -126,25 +126,20 @@ body {
     border-radius: 10px;
 }
 /* Change colors based on political bias score */
-#farleftliberal {
+#slightLeft{
     background-color: #061f80;
 }
-#midleftliberal {
+#1.article-bias{
     background-color: #2759b8;
 }
-#neutralleftliberal {
-    background-color: #6ca1eb;
-}
-#neutral {
+#Neutral{
     background-color: #cad0d9;
 }
-#farrightconservative {
+#FarRight{
     background-color: #731815;
 }
-#midrightconservative {
-    background-color: #ab3333;
-}
-#neutralrightconservative {
+
+#slightRight{
     background-color: #ab6161;
 }
 

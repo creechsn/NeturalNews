@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,18 +9,64 @@ namespace NeutralNews.Models
 {
     public class ArticleData
     {
-        public int ReliabilityID { get; set; }
+        public int ReferenceID { set; get; }
+        [DisplayName("ReferenceName")]
+        public string ReferenceName { set; get; }
+        [DisplayName("ReferenceURL")]
+        public string ReferenceURL { set; get; }
+        [DisplayName("ReferenceScore")]
+        public string ReferenceScore { set; get; }
+        [DisplayName("LeaningBias")]
+        public string BiasLeaning { set; get; }
 
-        public string SourceName { get; set; }
+        public List<ArticleData> GetArticleData(string connectionString)
+        {
+            List<ArticleData> ArticlesData = new List<ArticleData>();
 
-        public string SourceURL { get; set; }
+            SqlConnection con = new SqlConnection(connectionString);
 
-        public int score { get; set; }
+            string sqlQuery = "SELECT * FROM Reference_Data";
 
-        public byte isArticle { get; set; }
+            con.Open();
 
-        public byte isAudio { get; set; }
+            SqlCommand cmd = new SqlCommand(sqlQuery, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr != null)
+            {
+                while (dr.Read())
+                {
+                    var Articles = new ArticleData();
 
-        public byte isVideo { get; set; }
+                    Articles.ReferenceID = Convert.ToInt32(dr["ReferenceID"]);
+                    Articles.ReferenceName = dr["ReferenceName"].ToString();
+                    Articles.ReferenceURL = dr["ReferenceURL"].ToString();
+                    Articles.ReferenceScore = dr["ReferenceScore"].ToString();
+
+                    if (Articles.ReferenceScore == "0")
+                    {
+                        Articles.BiasLeaning = "Neutral";
+                    }
+                    else if (Articles.ReferenceScore == "1")
+                    {
+                        Articles.BiasLeaning = "slightLeft";
+                    }
+                    else if (Articles.ReferenceScore == "2")
+                    {
+                        Articles.BiasLeaning = "FarLeft";
+                    }
+                    else if (Articles.ReferenceScore == "-1")
+                    {
+                        Articles.BiasLeaning = "slightRight";
+                    }
+                    else if (Articles.ReferenceScore == "-2")
+                    {
+                        Articles.BiasLeaning = "FarRight";
+                    }
+                    ArticlesData.Add(Articles);
+                }
+            }
+            return ArticlesData;
+
+        }
     }
 }

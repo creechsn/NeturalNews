@@ -3,9 +3,6 @@
 @{
     ViewData["Title"] = "Contact Us";
 }
-@{
-    Layout = "~/Views/Email/Contact.cshtml";
-}
 
 <h2>@ViewData["Title"]</h2>
 
@@ -58,5 +55,12 @@
             window.alert("Please type a message before submitting");
             console.log("Please type a message before submitting" + validInput);
         }
+
+        else {
+            window.alert("Thank you for your input!");
+
+        }
+
+
     };
 </script>

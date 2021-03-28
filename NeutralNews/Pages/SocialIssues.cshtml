@@ -1,27 +1,56 @@
 ﻿@page
-@model NeutralNews.Models.SocialIssuesData
+@model NeutralNews.Pages.SocialModel
 @{
     ViewData["Title"] = "Social Issues";
 }
-@{
-    Layout = "~/Views/SocialIssues/SocialIssuesArticles.cshtml";
-}
-@*
+@* --------------------------------------------------------------------------------------- *@
+@* Page specific CSS *@
+@* --------------------------------------------------------------------------------------- *@
+<style>
+    /* Style the active class, and buttons on mouse-over */
+    .active, .btn:hover {
+        background-color: #666;
+        color: white;
+    }
+    /* Change colors based on political bias score */
+    #slightLeft {
+        background-color: #34d2eb;
+    }
+
+    #FarLeft {
+        background-color: #1000c2;
+    }
+
+    #Neutral {
+        background-color: #cad0d9;
+    }
+
+    #FarRight {
+        background-color: #731815;
+    }
+
+    #slightRight {
+        background-color: #ab6161;
+    }
+</style>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0" nonce="ZLTC1Oi3"></script>
+@* --------------------------------------------------------------------------------------- *@
+@* Nav bar stuff *@
+@* --------------------------------------------------------------------------------------- *@
 <div class="row" id="categorychoices">
-
 </div>
-
-@* Pretty navbar for flipping through categories*@
+@*Pretty navbar for flipping through categories*@
 <div class="row">
-    <h1>Category chosen will appear here</h1>
-    @* This will be populated later using database *@
+    <h1 id="categoryChosen"></h1>
+    @*This will be populated later using database*@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Categories</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">BLM</a></li>
+            <ul class="nav navbar-nav" id="navCategories">
+                <li><a href="#">BLM</a></li>
                 <li><a href="#">LGBBTQ+</a></li>
                 <li><a href="#">Women's Rights</a></li>
                 <li><a href="#">Climate Change</a></li>
@@ -31,44 +60,103 @@
             </ul>
         </div>
     </nav>
+    @* --------------------------------------------------------------------------------------- *@
+    @* This is the where the functionality is *@
+    @* --------------------------------------------------------------------------------------- *@
+    <div>
+        <h1>Articles Found</h1>
+        Below you see all the Article Websites registered in our Database:
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Reference Name</th>
+                    <th>Reference URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var SocicalIssuesArticle in Model.SocialIssuesArticles)
+                {
+                <div class="article-container">
+                    <div class="article-title">
+                        <h2> @SocicalIssuesArticle.SourceName</h2>
+                    </div>
 
-    @* Articles are placed here (need to add code to populate based on database data) *@
-    <div class="col-md-12">
-        <div class="article-container">
-            <div class="article-title">
-                <h2>Black Lives Matter Just Entered Its Next Phase</h2>
-            </div>
-            <div class="article-bias" id="farleftliberal"></div>
-            <embed type="text/html" class="embedContent" src="https://www.theatlantic.com/culture/archive/2020/09/black-lives-matter-just-entered-its-next-phase/615952/" width="1140" height="400">
-        </div>
-        <div class="article-container">
-            <div class="article-title">
-                <h2>Over 11,000 scientists warn of ‘climate emergency’</h2>
-            </div>
-            <div class="article-bias" id="farrightconservative"></div>
-            <embed type="text/html" class="embedContent" src="https://www.foxnews.com/science/11000-scientists-warn-of-climate-emergency" width="1140" height="400">
-        </div>
-        <div class="article-container">
-            <div class="article-title">
-                <h2>Ginsburg, a feminist icon memorialized as the Notorious RBG</h2>
-            </div>
-            <div class="article-bias" id="neutral"></div>
-            <embed type="text/html" class="embedContent" src="https://abcnews.go.com/Politics/wireStory/ginsburg-feminist-icon-memorialized-notorious-rbg-73113229" width="1140" height="400">
-        </div>
-        <div class="article-container">
-            <div class="article-title">
-                <h2>How LGBT Nonprofits And Their Billionaire Patrons Are Reshaping The World</h2>
-            </div>
-            <div class="article-bias" id="neutralrightconservative"></div>
-            <embed type="text/html" class="embedContent" src="https://www.theamericanconservative.com/articles/how-lgbt-nonprofits-and-their-billionaire-patrons-are-reshaping-the-world/" width="1140" height="400">
-        </div>
-        <div class="article-container">
-            <div class="article-title">
-                <h2>CNN Special Reports Presents: Women Represented: The 100 Year Battle for Equality</h2>
-            </div>
-            <div class="article-bias" id="midleftliberal"></div>
-            <embed type="text/html" class="embedContent" src="https://cnnpressroom.blogs.cnn.com/2020/08/17/cnn-special-reports-presents-women-represented-the-100-year-battle-for-equality/" width="1140" height="400">
-        </div>
+                    <div class="article-bias" id="@SocicalIssuesArticle.BiasLeaning"></div>
+                    <embed type="text/html" class="embedContent" src="@SocicalIssuesArticle.SourceURL" width="1140" height="400">
+                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+                    <br>
+                    <br>
+                    <hr>
+                </div>
+
+                }
+            </tbody>
+        </table>
     </div>
+    @* --------------------------------------------------------------------------------------- *@
+    @* Page specific Javascript *@
+    @* --------------------------------------------------------------------------------------- *@
+    <script>
+        $(".nav li").on("click", function () {
+            $(".nav li").removeClass("active");
+            $(this).addClass("active");
 
-</div>
+            var $activeText = element.classList.contains(className);
+
+            document.getElementById("categoryChosen").textContent = $activeText;
+        });
+
+
+    @* --------------------------------------------------------------------------------------- *@
+    @* Commented code from early development *@
+    @* --------------------------------------------------------------------------------------- *@
+    @*<tr>
+            <td> @SocicalIssuesArticle.ReferenceID</td>
+            <td> @SocicalIssuesArticle.ReferenceName</td>
+            <td> @SocicalIssuesArticle.ReferenceURL</td>
+            <td> @SocicalIssuesArticle.ReferenceScore</td>
+        </tr>*@
+
+    @*
+        Articles are placed here (need to add code to populate based on database data)
+                <div class="col-md-12">
+                    <div class="article-container">
+                        <div class="article-title">
+                            <h2>Black Lives Matter Just Entered Its Next Phase</h2>
+                        </div>
+
+                        <div class="article-bias" id="farleftliberal"></div>
+                        <embed type="text/html" class="embedContent" src="https://www.theatlantic.com/culture/archive/2020/09/black-lives-matter-just-entered-its-next-phase/615952/" width="1140" height="400">
+                    </div>
+                    <div class="article-container">
+                        <div class="article-title">
+                            <h2>Over 11,000 scientists warn of ‘climate emergency’</h2>
+                        </div>
+                        <div class="article-bias" id="farrightconservative"></div>
+                        <embed type="text/html" class="embedContent" src="https://www.foxnews.com/science/11000-scientists-warn-of-climate-emergency" width="1140" height="400">
+                    </div>
+                    <div class="article-container">
+                        <div class="article-title">
+                            <h2>Ginsburg, a feminist icon memorialized as the Notorious RBG</h2>
+                        </div>
+                        <div class="article-bias" id="neutral"></div>
+                        <embed type="text/html" class="embedContent" src="https://abcnews.go.com/Politics/wireStory/ginsburg-feminist-icon-memorialized-notorious-rbg-73113229" width="1140" height="400">
+                    </div>
+                    <div class="article-container">
+                        <div class="article-title">
+                            <h2>How LGBT Nonprofits And Their Billionaire Patrons Are Reshaping The World</h2>
+                        </div>
+                        <div class="article-bias" id="neutralrightconservative"></div>
+                        <embed type="text/html" class="embedContent" src="https://www.theamericanconservative.com/articles/how-lgbt-nonprofits-and-their-billionaire-patrons-are-reshaping-the-world/" width="1140" height="400">
+                    </div>
+                    <div class="article-container">
+                        <div class="article-title">
+                            <h2>CNN Special Reports Presents: Women Represented: The 100 Year Battle for Equality</h2>
+                        </div>
+                        <div class="article-bias" id="midleftliberal"></div>
+                        <embed type="text/html" class="embedContent" src="https://cnnpressroom.blogs.cnn.com/2020/08/17/cnn-special-reports-presents-women-represented-the-100-year-battle-for-equality/" width="1140" height="400">
+                    </div>
+                </div>
+
+            </div> *@
