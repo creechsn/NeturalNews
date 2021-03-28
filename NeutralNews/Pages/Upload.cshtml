@@ -2,10 +2,10 @@
     @model UploadModel
     @{
         ViewData["Title"] = "Upload a Link";
-        ViewData["Message"] = "Insert a valid link to an article/website you would like to know the political leaning of.";
+        ViewData["LinkMessage"] = "Insert a valid link to an article/website you would like to know the political leaning of. (Make sure you include 'https://')";
     }
     <h2>@ViewData["Title"]</h2>
-    <h3>@ViewData["Message"]</h3>
+    <h3>@ViewData["LinkMessage"]</h3>
 
     <form method="post">
         <div class="textBox">
@@ -13,6 +13,8 @@
                    id="input_URL" name="inputURL" value="" />
             <br /> <br />
             <button id="submit" type="submit" value="Submit" class="btn btn-primary" runat="server">Submit</button>
-            @*<input id="Button" type="submit" value="Submit"  class="btn btn-primary"  runat="server"/>*@
-        </div>
-   </form>
+            <br />
+        </div>  
+        <br/>
+        <h3 class="display-4" id="message">@Model.Message</h3>
+</form>

@@ -88,7 +88,6 @@ body {
     background: white;
     color: dodgerblue;
     margin-top: 9px;
-
 }
 
 .search_icon {
@@ -146,5 +145,8 @@ body {
 }
 #neutralrightconservative {
     background-color: #ab6161;
+}
+#message {
+    
 }
 
