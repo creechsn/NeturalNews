@@ -1,5 +1,5 @@
 ﻿@page
-@model Models.EmailFormModel
+@model ContactModel
 @{
     ViewData["Title"] = "Contact Us";
 }
@@ -32,10 +32,15 @@
             We will compare your link to our database using our algorithm to check what kind of political leaning it has.
         </label>
     </div>
-    <button type="button" onClick="location.href = 'Upload'" class="btn btn-primary">Upload a Link!</button>
+    <input id="btnUploadView" type="button" onClick="location.href = 'Upload'" value="Upload A Link" class="btn btn-primary" />
 
 </form>
 
+
+
+@* --------------------------------------------------------------------------------------- *@
+@* Page specific Javascript *@
+@* --------------------------------------------------------------------------------------- *@
 <script>
     //button click event
     document.getElementById("SubmitButton").onclick = function () { validateFunction() };

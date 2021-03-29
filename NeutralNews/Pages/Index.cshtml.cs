@@ -26,7 +26,7 @@ namespace NeutralNews.Pages
         {
             ArticleData ArticleDataView = new ArticleData();
             connectionString = _configuration.GetConnectionString("ConnectionString");
-            ArticleData = ArticleDataView.GetArticleData(connectionString).GetRange(0, 5);
+            ArticleData = ArticleDataView.GetArticleData(connectionString).GetRange(0, 15);
         }
     }
 }

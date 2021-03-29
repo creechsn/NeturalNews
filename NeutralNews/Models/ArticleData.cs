@@ -25,7 +25,7 @@ namespace NeutralNews.Models
 
             SqlConnection con = new SqlConnection(connectionString);
 
-            string sqlQuery = "SELECT * FROM Reference_Data";
+            string sqlQuery = "SELECT * FROM Reference_Data ORDER BY RAND()";
 
             con.Open();
 
