@@ -24,7 +24,7 @@ namespace NeutralNews.Models
         {
             List<RefugeeSocialIssuesData> RefugeeSocialIssuesArticles = new List<RefugeeSocialIssuesData>();
             SqlConnection con = new SqlConnection(connectionString);
-            string sqlQuery = "SELECT * FROM Reliability_Data where SourceName LIKE '%immigrants%'";
+            string sqlQuery = "SELECT * FROM Reliability_Data where SourceName LIKE '%migrant%' OR SourceName LIKE '%immigrant%' OR SourceName LIKE '%asylum-seeker%' OR SourceName LIKE '%asylum applicant%' OR SourceName LIKE '%refugee%' OR SourceName LIKE '%refugee protection status%' OR SourceName LIKE '%asylum%' OR SourceName LIKE '%subsidiary protection%' ";
             con.Open();
 
             SqlCommand cmd = new SqlCommand(sqlQuery, con);
