@@ -1,4 +1,4 @@
- /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
 for details on configuring this project to bundle and minify static web assets. */
 
 /* --------------------------------------------------------------------------- */
@@ -18,7 +18,8 @@ body {
     background-color: #272626;
     color: lightgray;
 }
-.navbar-brand{
+
+.navbar-brand {
     font-size: x-large;
 }
 /* Wrapping element */
@@ -39,9 +40,8 @@ body {
     min-width: 100%;
 }
 
-.img-responsive{
-
-    min-width:100%;
+.img-responsive {
+    min-width: 100%;
 }
 
 /* Hide/rearrange for smaller screens */
@@ -51,14 +51,64 @@ body {
         display: none;
     }
 }
+/* Searchbar*/
+.searchbar {
+    margin-bottom: 8px;
+    margin-top: 8px;
+    float: right;
+    height: 35px;
+    background-color: lightgray;
+    border-radius: 30px;
+    padding: 8px 0px 0px 0px;
+}
+
+.search_input {
+    color: #272626;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    font-size: 18px;
+    font-weight: bold;
+    caret-color: transparent;
+    line-height: 0px;
+    transition: width 0.4s linear;
+    text-align: left;
+    align-content: flex-start;
+}
+
+.searchbar:hover > .search_input {
+    padding: 0 10px;
+    width: 400px;
+    caret-color: red;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon {
+    background: white;
+    color: dodgerblue;
+    margin-top: 9px;
+}
+
+.search_icon {
+    height: 0px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: black;
+    text-decoration: none;
+    margin-top: 9px;
+}
 
 /*--------------------------------------
    Style embedded articles   
 --------------------------------------*/
-.embedContent{
-    background-color:white;
-    align-items:center;
-
+.embedContent {
+    background-color: white;
+    align-items: center;
 }
 /* Arrtice bias/title Formatting 
    Bold weight has not changed yet */
@@ -69,25 +119,37 @@ body {
     font-weight: bold;
     margin-top: 10px
 }
-.article-bias{
+
+.article-bias {
     height: 15px;
     border-radius: 10px;
 }
 /* Change colors based on political bias score */
-#slightLeft{
+#farleftliberal {
     background-color: #061f80;
 }
-#1.article-bias{
+
+#midleftliberal {
     background-color: #2759b8;
 }
-#Neutral{
+
+#neutralleftliberal {
+    background-color: #6ca1eb;
+}
+
+#neutral {
     background-color: #cad0d9;
 }
-#FarRight{
+
+#farrightconservative {
     background-color: #731815;
 }
 
-#slightRight{
+#midrightconservative {
+    background-color: #ab3333;
+}
+
+#neutralrightconservative {
     background-color: #ab6161;
 }
 
