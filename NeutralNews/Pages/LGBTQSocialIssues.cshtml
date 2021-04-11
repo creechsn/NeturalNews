@@ -1,8 +1,9 @@
 ﻿@page
-@model NeutralNews.Pages.SocialModel
+@model NeutralNews.Pages.LGBTQSocialIssuesModel
 @{
-    ViewData["Title"] = "Social Issues";
+    ViewData["Title"] = "LGBTQ+ Social Issues";
 }
+<asp:HiddenField ID="categoryChosen" runat="server" />
 @* --------------------------------------------------------------------------------------- *@
 @* Page specific CSS *@
 @* --------------------------------------------------------------------------------------- *@
@@ -75,15 +76,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var SocicalIssuesArticle in Model.SocialIssuesArticles)
+                @foreach (var LGBTQSocicalIssuesArticle in Model.LGBTQSocialIssuesArticles)
                 {
                     <div class="article-container">
                         <div class="article-title">
-                            <h2> @SocicalIssuesArticle.SourceName</h2>
+                            <h2> @LGBTQSocicalIssuesArticle.SourceName</h2>
                         </div>
 
-                        <div class="article-bias" id="@SocicalIssuesArticle.BiasLeaning"></div>
-                        <embed type="text/html" class="embedContent" src="@SocicalIssuesArticle.SourceURL" width="1140" height="400">
+                        <div class="article-bias" id="@LGBTQSocicalIssuesArticle.BiasLeaning"></div>
+                        <embed type="text/html" class="embedContent" src="@LGBTQSocicalIssuesArticle.SourceURL" width="1140" height="400">
                         <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                         <br />
                         <a class="twitter-share-button"
@@ -111,55 +112,3 @@
         });
 
     </script>
-    @* --------------------------------------------------------------------------------------- *@
-    @* Commented code from early development *@
-    @* --------------------------------------------------------------------------------------- *@
-    @*<tr>
-            <td> @SocicalIssuesArticle.ReferenceID</td>
-            <td> @SocicalIssuesArticle.ReferenceName</td>
-            <td> @SocicalIssuesArticle.ReferenceURL</td>
-            <td> @SocicalIssuesArticle.ReferenceScore</td>
-        </tr>*@
-
-    @*
-        Articles are placed here (need to add code to populate based on database data)
-                <div class="col-md-12">
-                    <div class="article-container">
-                        <div class="article-title">
-                            <h2>Black Lives Matter Just Entered Its Next Phase</h2>
-                        </div>
-
-                        <div class="article-bias" id="farleftliberal"></div>
-                        <embed type="text/html" class="embedContent" src="https://www.theatlantic.com/culture/archive/2020/09/black-lives-matter-just-entered-its-next-phase/615952/" width="1140" height="400">
-                    </div>
-                    <div class="article-container">
-                        <div class="article-title">
-                            <h2>Over 11,000 scientists warn of ‘climate emergency’</h2>
-                        </div>
-                        <div class="article-bias" id="farrightconservative"></div>
-                        <embed type="text/html" class="embedContent" src="https://www.foxnews.com/science/11000-scientists-warn-of-climate-emergency" width="1140" height="400">
-                    </div>
-                    <div class="article-container">
-                        <div class="article-title">
-                            <h2>Ginsburg, a feminist icon memorialized as the Notorious RBG</h2>
-                        </div>
-                        <div class="article-bias" id="neutral"></div>
-                        <embed type="text/html" class="embedContent" src="https://abcnews.go.com/Politics/wireStory/ginsburg-feminist-icon-memorialized-notorious-rbg-73113229" width="1140" height="400">
-                    </div>
-                    <div class="article-container">
-                        <div class="article-title">
-                            <h2>How LGBT Nonprofits And Their Billionaire Patrons Are Reshaping The World</h2>
-                        </div>
-                        <div class="article-bias" id="neutralrightconservative"></div>
-                        <embed type="text/html" class="embedContent" src="https://www.theamericanconservative.com/articles/how-lgbt-nonprofits-and-their-billionaire-patrons-are-reshaping-the-world/" width="1140" height="400">
-                    </div>
-                    <div class="article-container">
-                        <div class="article-title">
-                            <h2>CNN Special Reports Presents: Women Represented: The 100 Year Battle for Equality</h2>
-                        </div>
-                        <div class="article-bias" id="midleftliberal"></div>
-                        <embed type="text/html" class="embedContent" src="https://cnnpressroom.blogs.cnn.com/2020/08/17/cnn-special-reports-presents-women-represented-the-100-year-battle-for-equality/" width="1140" height="400">
-                    </div>
-                </div>
-
-            </div> *@

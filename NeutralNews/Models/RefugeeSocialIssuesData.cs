@@ -8,7 +8,7 @@ using System.Data;
 
 namespace NeutralNews.Models
 {
-    public class SocialIssuesData
+    public class RefugeeSocialIssuesData
     {
         public int ReliabilityID { set; get; }
         [DisplayName("SourceName")]
@@ -20,11 +20,11 @@ namespace NeutralNews.Models
         [DisplayName("LeaningBias")]
         public string BiasLeaning { set; get; }
 
-        public List<SocialIssuesData> GetSocialIssuesDatas(string connectionString)
+        public List<RefugeeSocialIssuesData> GetRefugeeSocialIssuesDatas(string connectionString)
         {
-            List<SocialIssuesData> SocialIssuesArticles = new List<SocialIssuesData>();
+            List<RefugeeSocialIssuesData> RefugeeSocialIssuesArticles = new List<RefugeeSocialIssuesData>();
             SqlConnection con = new SqlConnection(connectionString);
-            string sqlQuery = "SELECT * FROM Reliability_Data ORDER BY [ReliabilityID] OFFSET 10 ROWS FETCH NEXT 50 ROWS ONLY;";
+            string sqlQuery = "SELECT * FROM Reliability_Data where SourceName LIKE '%immigrants%'";
             con.Open();
 
             SqlCommand cmd = new SqlCommand(sqlQuery, con);
@@ -33,7 +33,7 @@ namespace NeutralNews.Models
             {
                 while (dr.Read())
                 {
-                    var SocialArticle = new SocialIssuesData();
+                    var SocialArticle = new RefugeeSocialIssuesData();
 
                     SocialArticle.ReliabilityID = Convert.ToInt32(dr["ReliabilityID"]);
                     SocialArticle.SourceName = dr["SourceName"].ToString();
@@ -60,10 +60,10 @@ namespace NeutralNews.Models
                     {
                         SocialArticle.BiasLeaning = "FarRight";
                     }
-                    SocialIssuesArticles.Add(SocialArticle);
+                    RefugeeSocialIssuesArticles.Add(SocialArticle);
                 }
             }
-            return SocialIssuesArticles;
+            return RefugeeSocialIssuesArticles;
         }
 
     }

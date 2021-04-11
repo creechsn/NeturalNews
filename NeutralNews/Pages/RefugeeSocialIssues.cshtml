@@ -1,8 +1,9 @@
 ﻿@page
-@model NeutralNews.Pages.SocialModel
+@model NeutralNews.Pages.RefugeeSocialIssuesModel
 @{
-    ViewData["Title"] = "Social Issues";
+    ViewData["Title"] = "Refugee Crisis Social Issues";
 }
+<asp:HiddenField ID="categoryChosen" runat="server" />
 @* --------------------------------------------------------------------------------------- *@
 @* Page specific CSS *@
 @* --------------------------------------------------------------------------------------- *@
@@ -75,15 +76,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var SocicalIssuesArticle in Model.SocialIssuesArticles)
+                @foreach (var RefugeeSocicalIssuesArticle in Model.RefugeeSocialIssuesArticles)
                 {
                     <div class="article-container">
                         <div class="article-title">
-                            <h2> @SocicalIssuesArticle.SourceName</h2>
+                            <h2> @RefugeeSocicalIssuesArticle.SourceName</h2>
                         </div>
 
-                        <div class="article-bias" id="@SocicalIssuesArticle.BiasLeaning"></div>
-                        <embed type="text/html" class="embedContent" src="@SocicalIssuesArticle.SourceURL" width="1140" height="400">
+                        <div class="article-bias" id="@RefugeeSocicalIssuesArticle.BiasLeaning"></div>
+                        <embed type="text/html" class="embedContent" src="@RefugeeSocicalIssuesArticle.SourceURL" width="1140" height="400">
                         <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                         <br />
                         <a class="twitter-share-button"

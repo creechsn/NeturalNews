@@ -25,7 +25,7 @@ namespace NeutralNews.Models
 
             SqlConnection con = new SqlConnection(connectionString);
 
-            string sqlQuery = "SELECT * FROM Reference_Data ORDER BY RAND()";
+            string sqlQuery = "SELECT * FROM Reference_Data ORDER BY [ReferenceID] OFFSET 10 ROWS FETCH NEXT 50 ROWS ONLY;";
 
             con.Open();
 

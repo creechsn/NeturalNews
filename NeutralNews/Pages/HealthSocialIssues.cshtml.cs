@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +9,13 @@ using NeutralNews.Models;
 
 namespace NeutralNews.Pages
 {
-    public class SocialModel : PageModel
+    public class HealthSocialIssuesModel : PageModel
     {
 
         readonly IConfiguration _configuration;
-        public List<SocialIssuesData> SocialIssuesArticles = new List<SocialIssuesData>();
+        public List<HealthSocialIssuesData> HealthSocialIssuesArticles = new List<HealthSocialIssuesData>();
         public string connectionString;
-        public SocialModel(IConfiguration configuration)
+        public HealthSocialIssuesModel(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -27,9 +25,9 @@ namespace NeutralNews.Pages
         }
         void GetData()
         {
-            SocialIssuesData SocicalIssuesArticle = new SocialIssuesData();
+            HealthSocialIssuesData HealthSocialIssuesArticle = new HealthSocialIssuesData();
             connectionString = _configuration.GetConnectionString("ConnectionString");
-            SocialIssuesArticles = SocicalIssuesArticle.GetSocialIssuesDatas(connectionString);
+            HealthSocialIssuesArticles = HealthSocialIssuesArticle.GetHealthSocialIssuesDatas(connectionString);
         }
 
     }
