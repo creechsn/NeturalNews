@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NeutralNews</title>
 
-    <environment include="Development">
+    <environment include="Production">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -34,6 +34,7 @@
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/SocialIssues">Social Issues</a></li>
                     <li><a asp-page="/Contact">Contact Us</a></li>
+                    <li><a asp-page="/UserSearch">Custom Search</a></li>
                 </ul>
                 <div class="container h-100">
                     <div class="d-flex justify-content-center h-100">
